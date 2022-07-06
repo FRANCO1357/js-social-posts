@@ -62,39 +62,47 @@ const posts = [
 
 console.log(posts);
 
-let post = '';
-
-for (let i = 0; i < posts.length; i++){
-    post += `<div class="post">
+const createPost = (postItems) => {
+    const post = `<div class="post">
     <div class="post__header">
       <div class="post-meta">
         <div class="post-meta__icon">
-          <img class="profile-pic" src="${posts[i]['authorPic']}" alt="Phil Mangione" />
+          <img class="profile-pic" src="${postItems['authorPic']}" alt="Phil Mangione" />
         </div>
         <div class="post-meta__data">
-          <div class="post-meta__author">${posts[i]['authorName']}</div>
-          <div class="post-meta__time">${posts[i]['date']}</div>
+          <div class="post-meta__author">${postItems['authorName']}</div>
+          <div class="post-meta__time">${postItems['date']}</div>
         </div>
       </div>
     </div>
     <div class="post__text">
-        ${posts[i]['postText']}
+        ${postItems['postText']}
     </div>
     <div class="post__image">
-      <img src="${posts[i]['postImg']}" alt="" />
+      <img src="${postItems['postImg']}" alt="" />
     </div>
     <div class="post__footer">
       <div class="likes js-likes">
         <div class="likes__cta">
-          <a class="like-button js-like-button" href="#" data-postid="${posts[i]['id']}">
+          <a class="like-button js-like-button" href="#" data-postid="${postItems['id']}">
             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
             <span class="like-button__label">Mi Piace</span>
           </a>
         </div>
-        <div class="likes__counter">Piace a <b id="like-counter-1" class="js-likes-counter">${posts[i]['likeNumber']}</b> persone</div>
+        <div class="likes__counter">Piace a <b id="like-counter-1" class="js-likes-counter">${postItems['likeNumber']}</b> persone</div>
       </div>
     </div>
   </div>`;
+
+  return post;
+}
+
+let post = '';
+
+for (let i = 0; i < posts.length; i++){
+    let postItems = posts[i]
+
+    post += createPost(postItems);
 }
 
 container.innerHTML = post;
