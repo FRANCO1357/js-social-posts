@@ -26,7 +26,7 @@ const posts = [
         date: '07/06/2022',
         postText: 'Ciao ciao ciao ciao ciao ciao ciao',
         postImg: 'toscana.jpg',
-        likeNumber: '50',
+        likeNumber: 50,
       },
     
       {
@@ -36,7 +36,7 @@ const posts = [
         date: '07/06/2022',
         postText: 'Miao Miao Miao Miao Miao Miao Miao',
         postImg: 'sardegna.jpg',
-        likeNumber: '70',
+        likeNumber: 70,
       },
 
       {
@@ -46,7 +46,7 @@ const posts = [
         date: '07/06/2022',
         postText: 'Bau bau bau bau bau bau bau bau',
         postImg: 'livorno.jpg',
-        likeNumber: '80',
+        likeNumber: 80,
       },
 
       {
@@ -56,12 +56,13 @@ const posts = [
         date: '07/06/2022',
         postText: 'Chicchirichi Chicchirichi Chicchirichi',
         postImg: 'dolomiti.jpg',
-        likeNumber: '90',
+        likeNumber: 90,
       },
 ]
 
 console.log(posts);
 
+// CREO UNA FUNZIONE CHE CREA I POST
 const createPost = (postItems) => {
     const post = `<div class="post">
     <div class="post__header">
@@ -84,7 +85,7 @@ const createPost = (postItems) => {
     <div class="post__footer">
       <div class="likes js-likes">
         <div class="likes__cta">
-          <a class="like-button js-like-button" href="#" data-postid="${postItems['id']}">
+          <a class="like-button js-like-button" data-postid="${postItems['id']}">
             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
             <span class="like-button__label">Mi Piace</span>
           </a>
@@ -99,10 +100,35 @@ const createPost = (postItems) => {
 
 let post = '';
 
+// CREO TUTTI I POST CHE HO NELL'ARRAY EVOCANDO LA FUNZIONE
 for (let i = 0; i < posts.length; i++){
     let postItems = posts[i]
 
     post += createPost(postItems);
 }
 
+// STAMPO IN PAGINA I POST
 container.innerHTML = post;
+
+// RECUPERO GLI ELEMENTI DAL POST CREATO
+const likeButton = document.querySelectorAll('.like-button');
+const likeCounter = document.querySelectorAll('.js-likes-counter');
+
+
+console.log(likeButton);
+
+
+for(let i = 0; i < likeButton.length; i++){
+
+    likeButton[i].addEventListener('click', function(){
+
+        likeButton[i].classList.add('like-button--liked')
+        likeCounter[i].innerHTML = `${posts[i].likeNumber + 1}`;
+    })
+
+    // console.log(likeButton[i])
+    console.log(posts[i].likeNumber);
+    console.log(likeButton[i])
+}
+
+
