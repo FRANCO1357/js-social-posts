@@ -24,7 +24,7 @@ const posts = [
         authorName: 'Franco',
         authorPic: 'authorpic-1.jpg', 
         date: '07/06/2022',
-        postText: 'Ciao ciao ciao ciao ciao ciao ciao',
+        postText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis fugit harum illo culpa, incidunt tempora distinctio veritatis quis repudiandae soluta nemo impedit, mollitia esse atque, nisi obcaecati corrupti odio iste?',
         postImg: 'toscana.jpg',
         likeNumber: 50,
       },
@@ -34,7 +34,7 @@ const posts = [
         authorName: 'Mario',
         authorPic: 'authorpic-2.jpg', 
         date: '07/06/2022',
-        postText: 'Miao Miao Miao Miao Miao Miao Miao',
+        postText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis fugit harum illo culpa, incidunt tempora distinctio veritatis quis repudiandae soluta nemo impedit, mollitia esse atque, nisi obcaecati corrupti odio iste?',
         postImg: 'sardegna.jpg',
         likeNumber: 70,
       },
@@ -44,7 +44,7 @@ const posts = [
         authorName: 'Beppe',
         authorPic: 'authorpic-3.jpg', 
         date: '07/06/2022',
-        postText: 'Bau bau bau bau bau bau bau bau',
+        postText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis fugit harum illo culpa, incidunt tempora distinctio veritatis quis repudiandae soluta nemo impedit, mollitia esse atque, nisi obcaecati corrupti odio iste?',
         postImg: 'livorno.jpg',
         likeNumber: 80,
       },
@@ -54,7 +54,7 @@ const posts = [
         authorName: 'Carla',
         authorPic: 'authorpic-4.jpg', 
         date: '07/06/2022',
-        postText: 'Chicchirichi Chicchirichi Chicchirichi',
+        postText: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis fugit harum illo culpa, incidunt tempora distinctio veritatis quis repudiandae soluta nemo impedit, mollitia esse atque, nisi obcaecati corrupti odio iste?',
         postImg: 'dolomiti.jpg',
         likeNumber: 90,
       },
@@ -114,21 +114,24 @@ container.innerHTML = post;
 const likeButton = document.querySelectorAll('.like-button');
 const likeCounter = document.querySelectorAll('.js-likes-counter');
 
-
-console.log(likeButton);
-
-
+// CON UN CICLO FOR PRENDO TUTTI I LIKE BUTTON
 for(let i = 0; i < likeButton.length; i++){
 
+    // AGGIUNGO O RIMUOVO LA CLASSE AI LIKE BUTTON E INCREMENTO O DECREMENTO I LIKES
     likeButton[i].addEventListener('click', function(){
+        const currentLike = likeCounter[i].innerHTML = `${posts[i].likeNumber + 1}`;
 
-        likeButton[i].classList.add('like-button--liked')
-        likeCounter[i].innerHTML = `${posts[i].likeNumber + 1}`;
+        if(likeButton[i].classList.contains('like-button--liked')){
+            likeButton[i].classList.remove('like-button--liked')
+            likeCounter[i].innerHTML = currentLike - 1;
+        } else {
+            likeButton[i].classList.add('like-button--liked')
+            likeCounter[i].innerHTML = `${posts[i].likeNumber + 1}`;
+        }
+        
     })
-
-    // console.log(likeButton[i])
-    console.log(posts[i].likeNumber);
-    console.log(likeButton[i])
 }
+
+
 
 
